@@ -16,6 +16,12 @@ VM snapshots + filesystem freeze are not the same as application-consistent back
 - A WAL troubleshooting runbook.
 - Validation steps and rollback instructions.
 
+## Documentation
+- **Postmortem (incident analysis):** [docs/postmortem.md](docs/postmortem.md)
+- **Install / configuration (global vzdump hook):** [docs/proxmox-vzdump-global-hook.md](docs/proxmox-vzdump-global-hook.md)
+- **WAL Troubleshooting (recovery runbook):** [docs/wal-troubleshooting.md](docs/wal-troubleshooting.md)
+- **Validation checklist:** [docs/validation-checklist.md](docs/validation-checklist.md)
+
 ## Requirements
 - Proxmox VE (QEMU VMs, not LXC)
 - Proxmox Backup Server configured as a storage target
@@ -33,11 +39,11 @@ VM snapshots + filesystem freeze are not the same as application-consistent back
    - `[InfluxDB Hook] Stopping influxdb3-core before backup`
    - `[InfluxDB Hook] Starting influxdb3-core after backup`
 
-See: `docs/proxmox-vzdump-global-hook.md` and `docs/validation-checklist.md`.
+See: [docs/proxmox-vzdump-global-hook.md](docs/proxmox-vzdump-global-hook.md) and [docs/validation-checklist.md](docs/validation-checklist.md).
 
 ## Troubleshooting
 If InfluxDB fails to start due to WAL issues:
-- See: `docs/wal-troubleshooting.md`
+- See: [docs/wal-troubleshooting.md](docs/wal-troubleshooting.md)
 
 ## Notes on log encoding
 Keep hook log messages ASCII-only to avoid encoding artifacts in task logs.
