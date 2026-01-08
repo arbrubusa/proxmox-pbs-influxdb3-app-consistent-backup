@@ -1,6 +1,7 @@
 # Proxmox PBS + InfluxDB 3: Application-Consistent Backups (vzdump global hook)
 
 This repository documents a real-world issue where **online snapshot backups** (Proxmox VE + Proxmox Backup Server) can leave **InfluxDB 3 Core** in an inconsistent state (e.g., **0-byte WAL files**), causing startup failures and defensive shutdowns.
+In my case, the "real-world" is my homelab. :)
 
 The fix is twofold:
 1. **One-time recovery**: remove corrupt/empty WAL files (0 bytes).
