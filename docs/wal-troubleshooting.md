@@ -18,39 +18,39 @@ In journalctl -u influxdb3-core, you may see:
 ## 1) Identify the data directory
 Check the systemd unit to confirm paths:
 
-sudo systemctl cat influxdb3-core
+`sudo systemctl cat influxdb3-core`
 
 Look for --object-store=file and the base directory (commonly under /var/lib/influxdb3).
 
 ## 2) Stop InfluxDB
-sudo systemctl stop influxdb3-core
+`sudo systemctl stop influxdb3-core`
 
 Confirm it is stopped:
 
-sudo systemctl is-active influxdb3-core
+`sudo systemctl is-active influxdb3-core`
 
 ## 3) Backup the data directory (recommended)
 Replace the path if your data dir differs:
 
-sudo cp -a /var/lib/influxdb3 /var/lib/influxdb3.bak.$(date +%F-%H%M%S)
+`sudo cp -a /var/lib/influxdb3 /var/lib/influxdb3.bak.$(date +%F-%H%M%S)`
 
 ## 4) Find 0-byte WAL files
 Adjust influxdb01 if your host dir differs:
 
-sudo find /var/lib/influxdb3/influxdb01/wal -maxdepth 1 -type f -name '*.wal' -size 0 -print
+`sudo find /var/lib/influxdb3/influxdb01/wal -maxdepth 1 -type f -name '*.wal' -size 0 -print`
 
 ## 5) Delete only 0-byte WAL files
-sudo find /var/lib/influxdb3/influxdb01/wal -maxdepth 1 -type f -name '*.wal' -size 0 -delete
+`sudo find /var/lib/influxdb3/influxdb01/wal -maxdepth 1 -type f -name '*.wal' -size 0 -delete`
 
 Verify none remain:
 
-sudo find /var/lib/influxdb3/influxdb01/wal -maxdepth 1 -type f -name '*.wal' -size 0 -print
+`sudo find /var/lib/influxdb3/influxdb01/wal -maxdepth 1 -type f -name '*.wal' -size 0 -print`
 
 Expected: no output.
 
 ## 6) Start InfluxDB and watch logs
-sudo systemctl start influxdb3-core
-sudo journalctl -u influxdb3-core -f
+`sudo systemctl start influxdb3-core`
+`sudo journalctl -u influxdb3-core -f`
 
 Expected:
 - WAL replay completes
@@ -58,7 +58,7 @@ Expected:
 - no "file exists" shutdown
 
 ## 7) Functional check
-curl -sS http://localhost:8181/health || true
+`curl -sS http://localhost:8181/health || true`
 
 ## Likely causes / prevention
 Common causes:
